@@ -1,0 +1,56 @@
+{
+  "id": "prod",
+  "region": "us-east-1",
+  "modules": {
+    "stream_alert": {
+      "alert_processor": {
+        "timeout": 25,
+        "memory": 128,
+        "version": 13
+      },
+      "rule_processor": {
+        "timeout": 10,
+        "memory": 256,
+        "version": 39
+      },
+      "inputs": {
+        "aws-sns:": []
+      },
+      "outputs": {
+        "aws-s3": [],
+        "aws-lambda": []
+      },
+      "vpc_config": {
+        "subnet_ids": [],
+        "security_group_ids": []
+      }
+    },
+    "cloudwatch_monitoring": {
+      "enabled": true
+    },
+    "kinesis": {
+      "streams": {
+        "shards": 5,
+        "retention": 36
+      },
+      "firehose": {
+        "enabled": true,
+        "s3_bucket_suffix": "streamalert.results"
+      }
+    },
+    "cloudtrail": {
+      "event_pattern": {
+        "source": [],
+        "detail-type": [],
+        "detail": {}
+      }
+    },
+    "flow_logs": {
+      "targets": {
+        "vpcs": [],
+        "subnets": [],
+        "enis": []
+      }
+    }
+  }
+}
